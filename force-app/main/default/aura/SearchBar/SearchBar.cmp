@@ -1,0 +1,6 @@
+<aura:component >
+    <aura:attribute name="isSearching" type="Boolean" default="false" />
+    <div onkeyup="{!c.handleSearch}" class="search-box">
+        <lightning:input aura:id="enter-search" name="enter-search" isLoading="{! v.isSearching }" type="search"/>
+    </div>
+</aura:component>

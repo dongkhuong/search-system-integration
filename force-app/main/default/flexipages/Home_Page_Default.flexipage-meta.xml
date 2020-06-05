@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>Navbar</componentName>
+        </componentInstances>
+        <name>oneRegion</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Home Page Default</masterLabel>
+    <template>
+        <name>CustomHomePage</name>
+    </template>
+    <type>HomePage</type>
+</FlexiPage>
