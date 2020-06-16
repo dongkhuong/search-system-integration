@@ -1,4 +1,7 @@
-<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+<aura:component controller="ViSearchR_SearchController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" access="global">
+    <aura:attribute name="isSearching" type="Boolean" default="false" />
+    <aura:attribute name="videoList" type="Object" access="public" />
+    <aura:attribute name="errorMessage" type="String" default=""/>
 	<article class="slds-card">
       <div class="slds-card__header slds-grid">
         <header class="slds-media slds-media--center slds-has-flexi-truncate">
@@ -18,8 +21,21 @@
         </div>
       </div>
       <div class="slds-card__body">
-          <c:SearchBar />  
+         <!-- <c:SearchBar /> -->
+        <div onkeyup="{!c.handleSearch}" class="search-box">
+            <lightning:input aura:id="enter-search" name="enter-search" isLoading="{! v.isSearching }" type="search"/>
+        </div>
       </div>
-      <div class="slds-card__footer">Search Bar</div>
+        <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.videoList.items}" var="item">
+                <div class="slds-col">
+            		<iframe 
+                    src="{!'https://www.youtube.com/embed/' + item.id.videoId}"
+                    width="100%"
+                	/>
+          		</div>
+        	</aura:iteration>
+        </div>
+      <div class="slds-card__footer">Footer</div>
 	</article>
 </aura:component>

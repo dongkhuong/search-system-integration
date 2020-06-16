@@ -10,19 +10,15 @@ public with sharing class ViSearchR_Settings {
             
             if(setting.Id == null) {
                 setting = ViSearchR_Settings__c.getOrgDefaults();
-            }
-            
+            }         
             if(setting.Id == null) {
                 throw new ViSearchR_SettingsException('Missing Oauth settings.');
-            }
-            
+            }            
             USER_ID = UserInfo.getUserId();
-            SETTINGS = setting;
-            
+            SETTINGS = setting;           
             if(setting.API_Base_URL__c != null){
                 API_ENDPOINT = setting.API_Base_URL__c.removeEnd('/');
-            }
-            
+            }         
             if(setting.API_Keys__c != null){
                 API_KEYS = setting.API_Keys__c;
             }
