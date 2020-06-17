@@ -45,8 +45,9 @@
       	this.getDataBySearching(component, event, searchKey);  
     },
     handleSearch : function(component, event) {
-		var isEnterKey = event.keyCode ===13;
+		var isEnterKey = event.keyCode === 13;
         var searchKey = component.find('enter-search').get('v.value');
+        component.set('v.searchKey', searchKey)
         if(isEnterKey) {
             if(!searchKey.trim()) {
                 //TO DO

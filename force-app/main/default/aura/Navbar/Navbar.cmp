@@ -1,17 +1,17 @@
 <aura:component controller="ViSearchR_SearchController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" access="global">
-    <aura:attribute name="isSearching" type="Boolean" default="false" />
     <aura:attribute name="videoList" type="Object" access="public" />
     <aura:attribute name="errorMessage" type="String" default=""/>
+    <aura:attribute name="searchKey" type="String" default="" />
 	<article class="slds-card">
       <div class="slds-card__header slds-grid">
         <header class="slds-media slds-media--center slds-has-flexi-truncate">
           <div class="slds-media__figure">
-            <lightning:icon iconName="standard:contact" alternativeText="Contact" title="Contact" />
+            <lightning:icon iconName="standard:search" alternativeText="Search" title="Search" />
           </div>
           <div class="slds-media__body slds-truncate">
             <h2>
               <a href="javascript:void(0);" class="slds-text-link--reset">
-                <span class="slds-text-heading--small">Card Header</span>
+                <span class="slds-text-heading--small"></span>
               </a>
             </h2>
           </div>
@@ -22,20 +22,25 @@
       </div>
       <div class="slds-card__body">
          <!-- <c:SearchBar /> -->
-        <div onkeyup="{!c.handleSearch}" class="search-box">
-            <lightning:input aura:id="enter-search" name="enter-search" isLoading="{! v.isSearching }" type="search"/>
+        <div onkeyup="{!c.handleSearch}" class="search-box slds-p-horizontal_x-small">
+            <lightning:input aura:id="enter-search" name="enter-search" type="search"/>
         </div>
-      </div>
+        <aura:if isTrue="{!v.videoList.pageInfo.totalResults > 0}">
+            <p class="result">{!v.videoList.pageInfo.totalResults} results for {!v.searchKey}</p>
+        </aura:if> 
         <div class="slds-grid slds-wrap">
             <aura:iteration items="{!v.videoList.items}" var="item">
-                <div class="slds-col">
+                <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
             		<iframe 
                     src="{!'https://www.youtube.com/embed/' + item.id.videoId}"
                     width="100%"
+                    height="auto"
                 	/>
+                    <h3 class="title">{!item.snippet.title}</h3>
           		</div>
         	</aura:iteration>
         </div>
+      </div>
       <div class="slds-card__footer">Footer</div>
 	</article>
 </aura:component>
